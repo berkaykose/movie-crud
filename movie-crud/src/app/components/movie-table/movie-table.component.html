@@ -1,5 +1,4 @@
 <p-toast></p-toast>
-{{ movie }}
 <div class="card">
     <p-toolbar styleClass="p-mb-4">
         <ng-template pTemplate="left">
@@ -38,7 +37,7 @@
                 <th></th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product>
+        <ng-template pTemplate="body" let-movie>
             <tr>
                 <td>
                     <p-tableCheckbox [value]="movie"></p-tableCheckbox>
@@ -98,12 +97,12 @@
 
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
-                <label for="price">Publish Year</label>
-                <p-inputNumber id="price" [(ngModel)]="movie.publishYear" locale="en-US"></p-inputNumber>
+                <label for="publishYear">Publish Year</label>
+                <p-inputNumber id="publishYear" [(ngModel)]="movie.publishYear" [useGrouping]="false"></p-inputNumber>
             </div>
             <div class="p-field p-col">
                 <label for="director">Director</label>
-                <p-inputNumber id="director" [(ngModel)]="movie.director"></p-inputNumber>
+                <input pInputText type="text" id="director" [(ngModel)]="movie.director">
             </div>
         </div>
     </ng-template>

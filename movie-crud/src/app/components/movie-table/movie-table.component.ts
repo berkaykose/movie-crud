@@ -28,8 +28,10 @@ export class MovieTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.movieService.getMovies().then((data) => (this.movies = data));
-    console.log(this.movies);
+    this.movieService.getMovies().then(data => this.movies = data);
+    setTimeout(() => {
+      console.log(this.movies);
+    }, 2000)
   }
 
   openNew() {
