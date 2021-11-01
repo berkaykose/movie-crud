@@ -7,7 +7,7 @@ import { MovieService } from 'src/app/services/movieService';
 @Component({
   selector: 'app-movie-table',
   templateUrl: './movie-table.component.html',
-  styleUrls: ['./movie-table.component.css'],
+  styleUrls: ['./movie-table.component.scss'],
   providers: [MessageService, ConfirmationService],
 })
 export class MovieTableComponent implements OnInit {
@@ -15,7 +15,7 @@ export class MovieTableComponent implements OnInit {
 
   movies: Movie[];
 
-  movie: Movie;
+  movie: Movie = new Movie;
 
   selectedMovies: Movie[];
 
@@ -29,6 +29,7 @@ export class MovieTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.movieService.getMovies().then((data) => (this.movies = data));
+    console.log(this.movies);
   }
 
   openNew() {

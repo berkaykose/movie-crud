@@ -1,5 +1,5 @@
 <p-toast></p-toast>
-
+{{ movie }}
 <div class="card">
     <p-toolbar styleClass="p-mb-4">
         <ng-template pTemplate="left">
@@ -31,7 +31,7 @@
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
                 <th pSortableColumn="title">Title <p-sortIcon field="title"></p-sortIcon></th>
-                <th pSortableColumn="publishYear">Publish Year <p-sortIcon field="publishYear"></p-sortIcon></th>
+                <th pSortableColumn="poster">Poster <p-sortIcon field="poster"></p-sortIcon></th>
                 <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
                 <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon></th>
                 <th pSortableColumn="director">Director <p-sortIcon field="director"></p-sortIcon></th>
@@ -44,7 +44,7 @@
                     <p-tableCheckbox [value]="movie"></p-tableCheckbox>
                 </td>
                 <td>{{movie.title}}</td>
-                <td>{{movie.year | format:"Year"}}</td>
+                <td><img [src]="'assets/showcase/images/movie/' + movie.poster" [alt]="movie.title" width="100" class="p-shadow-4" /></td>
                 <td>{{movie.category}}</td>
                 <td><p-rating [ngModel]="movie.rating" [readonly]="true" [cancel]="false"></p-rating></td>
                 <td><span [class]="'product-badge status-' + movie.director">{{movie.director}}</span></td>
