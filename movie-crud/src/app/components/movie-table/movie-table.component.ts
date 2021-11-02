@@ -7,7 +7,7 @@ import { MovieService } from 'src/app/services/movieService';
 @Component({
   selector: 'app-movie-table',
   templateUrl: './movie-table.component.html',
-  styleUrls: ['./movie-table.component.css'],
+  styleUrls: ['./movie-table.component.scss'],
   providers: [MessageService, ConfirmationService],
 })
 export class MovieTableComponent implements OnInit {
@@ -91,7 +91,7 @@ export class MovieTableComponent implements OnInit {
   saveMovie() {
     this.submitted = true;
 
-    if (this.movie.title.trim()) {
+    if (this.movie.title.trim() && this.movie.publishYear > 1888) {
       if (this.movie.id) {
         this.movies[this.findIndexById(this.movie.id)] = this.movie;
         this.messageService.add({

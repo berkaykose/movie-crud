@@ -1,116 +1,281 @@
 <p-toast></p-toast>
 <div class="card">
-    <p-toolbar styleClass="p-mb-4">
-        <ng-template pTemplate="left">
-            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
-            <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedMovies()" [disabled]="!selectedMovies || !selectedMovies.length"></button>
-        </ng-template>
+  <p-toolbar styleClass="mb-4">
+    <ng-template pTemplate="left">
+      <button
+        pButton
+        pRipple
+        label="New"
+        icon="pi pi-plus"
+        class="p-button-success mr-2"
+        (click)="openNew()"
+      ></button>
+      <button
+        pButton
+        pRipple
+        [label]="Delete"
+        icon="pi pi-trash"
+        class="p-button-danger"
+        (click)="deleteSelectedMovies()"
+        [disabled]="!selectedMovies || !selectedMovies.length"
+      ></button>
+    </ng-template>
 
-        <ng-template pTemplate="right">
-            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block"></p-fileUpload>
-            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
-        </ng-template>
-    </p-toolbar>
+    <ng-template pTemplate="right">
+      <p-fileUpload
+        mode="basic"
+        accept="image/*"
+        [maxFileSize]="1000000"
+        label="Import"
+        chooseLabel="Import"
+        class="mr-2 p-d-inline-block"
+      ></p-fileUpload>
+      <button
+        pButton
+        pRipple
+        label="Export"
+        icon="pi pi-upload"
+        class="p-button-help"
+      ></button>
+    </ng-template>
+  </p-toolbar>
 
-    <p-table #dt [value]="movies" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
-        [(selection)]="selectedMovies" [rowHover]="true" dataKey="id"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
-        <ng-template pTemplate="caption">
-            <div class="p-d-flex p-ai-center p-jc-between">
-                <h5 class="p-m-0">Manage Movies</h5>
-                <span class="p-input-icon-left">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
-                </span>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-            <tr>
-                <th style="width: 3rem">
-                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                </th>
-                <th pSortableColumn="title">Title <p-sortIcon field="title"></p-sortIcon></th>
-                <th pSortableColumn="poster">Poster <p-sortIcon field="poster"></p-sortIcon></th>
-                <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
-                <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon></th>
-                <th pSortableColumn="director">Director <p-sortIcon field="director"></p-sortIcon></th>
-                <th></th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-movie>
-            <tr>
-                <td>
-                    <p-tableCheckbox [value]="movie"></p-tableCheckbox>
-                </td>
-                <td>{{movie.title}}</td>
-                <td class="p-shadow-6"><img [src]="'assets/showcase/images/movie/' + movie.poster" [alt]="movie.title" width="100" class="p-shadow-4" /></td>
-                <td>{{movie.category}}</td>
-                <td><p-rating [ngModel]="movie.imdbScore" [readonly]="true" [cancel]="false"></p-rating></td>
-                <td><span [class]="'product-badge status-' + movie.director">{{movie.director}}</span></td>
-                <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editMovie(movie)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteMovie(movie)"></button>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="summary">
-            <div class="p-d-flex p-ai-center p-jc-between">
-                In total there are {{movies ? movies.length : 0 }} movies.
-            </div>
-        </ng-template>
-    </p-table>
+  <p-table
+    #dt
+    [value]="movies"
+    responsiveLayout="stack"
+    [rows]="10"
+    [paginator]="true"
+    [globalFilterFields]="[
+      'name',
+      'country.name',
+      'representative.name',
+      'status'
+    ]"
+    [(selection)]="selectedMovies"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        <h4 class="m-0">Manage Movies</h4>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filterGlobal($event.target.value, 'contains')"
+            placeholder="Search..."
+          />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="title">
+          Title <p-sortIcon field="title"></p-sortIcon>
+        </th>
+        <th pSortableColumn="poster">
+          Poster <p-sortIcon field="poster"></p-sortIcon>
+        </th>
+        <th pSortableColumn="category">
+          Category <p-sortIcon field="category"></p-sortIcon>
+        </th>
+        <th pSortableColumn="rating">
+          Reviews <p-sortIcon field="rating"></p-sortIcon>
+        </th>
+        <th pSortableColumn="director">
+          Director <p-sortIcon field="director"></p-sortIcon>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-movie let-columns="columns">
+      <tr>
+        <td>
+            <span class="p-column-title"></span>
+          <p-tableCheckbox [value]="movie"></p-tableCheckbox>
+        </td>
+        <td><span class="p-column-title">Title</span>{{ movie.title }}</td>
+        <td>
+            <span class="p-column-title">Poster</span>
+          <img
+            [src]="'assets/showcase/images/movie/' + movie.poster"
+            [alt]="movie.title"
+            width="100"
+            class="shadow-4"
+          />
+        </td>
+        <td><span class="p-column-title">Category</span>{{ movie.category }}</td>
+        <td>
+            <span class="p-column-title">Reviews</span>
+          <p-rating
+            [ngModel]="movie.imdbScore"
+            [readonly]="true"
+            [cancel]="false"
+          ></p-rating>
+        </td>
+        <td>
+            <span class="p-column-title">Director</span>
+          <span [class]="'product-badge status-' + movie.director">{{
+            movie.director
+          }}</span>
+        </td>
+        <td>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-success mr-2"
+            (click)="editMovie(movie)"
+          ></button>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-warning"
+            (click)="deleteMovie(movie)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{ movies ? movies.length : 0 }} movies.
+      </div>
+    </ng-template>
+  </p-table>
 </div>
 
-<p-dialog [(visible)]="movieDialog" [style]="{width: '450px'}" header="Movie Details" [modal]="true" styleClass="p-fluid">
-    <ng-template pTemplate="content">
-        <div class="p-field">
-            <label for="title">Title</label>
-            <input type="text" pInputText id="title" [(ngModel)]="movie.title" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !movie.title">Title is required.</small>
-        </div>
-        <div class="p-field">
-            <label for="description">Description</label>
-            <textarea id="description" pInputTextarea [(ngModel)]="movie.description" required rows="3" cols="20"></textarea>
-        </div>
+<p-dialog
+  [(visible)]="movieDialog"
+  [style]="{ width: '450px' }"
+  header="Movie Details"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="mb-3">
+      <label for="title">Title</label>
+      <input
+        class="mt-2"
+        type="text"
+        pInputText
+        id="title"
+        [(ngModel)]="movie.title"
+        required
+        autofocus
+      />
+      <small class="p-error" *ngIf="submitted && !movie.title"
+        >Title is required.</small
+      >
+    </div>
+    <div class="mb-3">
+      <label for="description">Description</label>
+      <textarea
+        class="mt-2"
+        id="description"
+        pInputTextarea
+        [(ngModel)]="movie.description"
+        required
+        rows="4"
+        cols="20"
+      ></textarea>
+    </div>
 
-        <div class="p-field">
-            <label class="p-mb-3">Category</label>
-            <div class="p-formgrid p-grid">
-                <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category1" name="category" value="Drama" [(ngModel)]="movie.category"></p-radioButton>
-                    <label for="category1">Drama</label>
-                </div>
-                <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category2" name="category" value="ScienceFiction" [(ngModel)]="movie.category"></p-radioButton>
-                    <label for="category2">Science Fiction</label>
-                </div>
-                <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category3" name="category" value="Action" [(ngModel)]="movie.category"></p-radioButton>
-                    <label for="category3">Action</label>
-                </div>
-                <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category4" name="category" value="Horror" [(ngModel)]="movie.category"></p-radioButton>
-                    <label for="category4">Horror</label>
-                </div>
-            </div>
+    <div class="mb-3">
+      <label class="">Category</label>
+      <div class="p-formgrid grid mt-2">
+        <div class="mb-2 col-6">
+          <p-radioButton
+            inputId="category1"
+            name="category"
+            value="Drama"
+            [(ngModel)]="movie.category"
+          ></p-radioButton>
+          <label class="ml-2" for="category1">Drama</label>
         </div>
+        <div class="mb-2 col-6">
+          <p-radioButton
+            inputId="category2"
+            name="category"
+            value="ScienceFiction"
+            [(ngModel)]="movie.category"
+          ></p-radioButton>
+          <label class="ml-2" for="category2">Science Fiction</label>
+        </div>
+        <div class="mb-2 col-6">
+          <p-radioButton
+            inputId="category3"
+            name="category"
+            value="Action"
+            [(ngModel)]="movie.category"
+          ></p-radioButton>
+          <label class="ml-2" for="category3">Action</label>
+        </div>
+        <div class="mb-2 col-6">
+          <p-radioButton
+            inputId="category4"
+            name="category"
+            value="Horror"
+            [(ngModel)]="movie.category"
+          ></p-radioButton>
+          <label class="ml-2" for="category4">Horror</label>
+        </div>
+      </div>
+    </div>
 
-        <div class="p-formgrid p-grid">
-            <div class="p-field p-col">
-                <label for="publishYear">Publish Year</label>
-                <p-inputNumber id="publishYear" [(ngModel)]="movie.publishYear" [useGrouping]="false"></p-inputNumber>
-            </div>
-            <div class="p-field p-col">
-                <label for="director">Director</label>
-                <input pInputText type="text" id="director" [(ngModel)]="movie.director">
-            </div>
-        </div>
-    </ng-template>
-    
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveMovie()"></button>
-    </ng-template>
+    <div class="p-formgrid grid">
+      <div class="mb-3 col">
+        <label for="publishYear">Publish Year</label>
+        <p-inputNumber
+          class="mt-2"
+          inputId="publishYear"
+          [(ngModel)]="movie.publishYear"
+          [useGrouping]="false"
+        ></p-inputNumber>
+        <small
+          class="p-error"
+          *ngIf="submitted && 2022 < movie.publishYear < 1888"
+          >Year is invalid.</small
+        >
+      </div>
+      <div class="mb-3 col">
+        <label for="director">Director</label>
+        <input
+          class="mt-2"
+          pInputText
+          type="text"
+          id="director"
+          [(ngModel)]="movie.director"
+        />
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Save"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="saveMovie()"
+    ></button>
+  </ng-template>
 </p-dialog>
 
-<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
