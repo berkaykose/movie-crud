@@ -43,9 +43,9 @@
                     <p-tableCheckbox [value]="movie"></p-tableCheckbox>
                 </td>
                 <td>{{movie.title}}</td>
-                <td><img [src]="'assets/showcase/images/movie/' + movie.poster" [alt]="movie.title" width="100" class="p-shadow-4" /></td>
+                <td class="p-shadow-6"><img [src]="'assets/showcase/images/movie/' + movie.poster" [alt]="movie.title" width="100" class="p-shadow-4" /></td>
                 <td>{{movie.category}}</td>
-                <td><p-rating [ngModel]="movie.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+                <td><p-rating [ngModel]="movie.imdbScore" [readonly]="true" [cancel]="false"></p-rating></td>
                 <td><span [class]="'product-badge status-' + movie.director">{{movie.director}}</span></td>
                 <td>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editMovie(movie)"></button>

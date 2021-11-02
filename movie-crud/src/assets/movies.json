@@ -8,7 +8,7 @@
             "category": "Drama",
             "poster": "the-lake-house.jpg",
             "director": "Alejandro Agresti", 
-            "imdbScore": 6.8
+            "imdbScore": 3.4
         },
         {
             "id": "0101",
@@ -18,7 +18,7 @@
             "category": "Drama",
             "poster": "eternal-sunshine-of-the-spotless-mind.jpg",
             "director": "Michel Gondry", 
-            "imdbScore": 8.3
+            "imdbScore": 4
         },
         {
             "id": "0102",
@@ -28,7 +28,7 @@
             "category": "Action",
             "poster": "the-equalizer.jpg",
             "director": "Antoine Fuqua", 
-            "imdbScore": 7.2
+            "imdbScore": 3
         },
         {
             "id": "0103",
@@ -38,7 +38,7 @@
             "category": "Action",
             "poster": "american-sniper.jpg",
             "director": "Clint Eastwood", 
-            "imdbScore": 7.3
+            "imdbScore": 3
         },
         {
             "id": "0104",
@@ -48,7 +48,7 @@
             "category": "Drama",
             "poster": "fight-club.jpg",
             "director": "David Fincher", 
-            "imdbScore": 8.8
+            "imdbScore": 4
         },
         {
             "id": "0105",
@@ -58,7 +58,7 @@
             "category": "Horror",
             "poster": "constantine.jpg",
             "director": "Francis Lawrence", 
-            "imdbScore": 7.0
+            "imdbScore": 3
         },
         {
             "id": "0106",
@@ -68,7 +68,47 @@
             "category": "Drama",
             "poster": "the-big-short.jpg",
             "director": "Adam Mckay", 
-            "imdbScore": 7.8
+            "imdbScore": 2
+        },
+        {
+            "id": "0107",
+            "title": "The Big Short",
+            "description": "In 2006-2007 a group of investors bet against the US mortgage market. In their research, they discover how flawed and corrupt the market is.",
+            "publishYear": 2015,
+            "category": "Drama",
+            "poster": "the-big-short.jpg",
+            "director": "Adam Mckay", 
+            "imdbScore": 3
+        },
+        {
+            "id": "0108",
+            "title": "The Big Short",
+            "description": "In 2006-2007 a group of investors bet against the US mortgage market. In their research, they discover how flawed and corrupt the market is.",
+            "publishYear": 2015,
+            "category": "Drama",
+            "poster": "the-big-short.jpg",
+            "director": "Adam Mckay", 
+            "imdbScore": 5
+        },
+        {
+            "id": "0109",
+            "title": "The Big Short",
+            "description": "In 2006-2007 a group of investors bet against the US mortgage market. In their research, they discover how flawed and corrupt the market is.",
+            "publishYear": 2015,
+            "category": "Drama",
+            "poster": "the-big-short.jpg",
+            "director": "Adam Mckay", 
+            "imdbScore": 1
+        },
+        {
+            "id": "0110",
+            "title": "The Big Short",
+            "description": "In 2006-2007 a group of investors bet against the US mortgage market. In their research, they discover how flawed and corrupt the market is.",
+            "publishYear": 2015,
+            "category": "Drama",
+            "poster": "the-big-short.jpg",
+            "director": "Adam Mckay", 
+            "imdbScore": 3
         }
     ]
 }

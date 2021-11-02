@@ -7,7 +7,7 @@ import { MovieService } from 'src/app/services/movieService';
 @Component({
   selector: 'app-movie-table',
   templateUrl: './movie-table.component.html',
-  styleUrls: ['./movie-table.component.scss'],
+  styleUrls: ['./movie-table.component.css'],
   providers: [MessageService, ConfirmationService],
 })
 export class MovieTableComponent implements OnInit {
